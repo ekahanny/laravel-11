@@ -14,7 +14,7 @@
                             {{-- href dan active akan disimpan dalam variabel attributes pada navlink --}}
                             <x-navlink href="/" :active="request()->is('/')">Home</x-navlink>
                             <x-navlink href="/about" :active="request()->is('about')">About</x-navlink>
-                            <x-navlink href="/blog" :active="request()->is('blog')">Blog</x-navlink>
+                            <x-navlink href="/posts" :active="request()->is('posts')">Blog</x-navlink>
                             <x-navlink href="/contact" :active="request()->is('contact')">Contact</x-navlink>
                         </div>
                     </div>

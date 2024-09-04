@@ -16,7 +16,7 @@
         
         {{-- memanggil component dengan nama navbar dan header --}}
         <x-navbar></x-navbar>
-        {{-- variabel title berasal dari route kemudian dikirim dari component (home, blog, dll) --}}
+        {{-- variabel title berasal dari route kemudian dikirim dari component (home, posts, dll) --}}
         <x-header>{{ $title }}</x-header>
 
 
