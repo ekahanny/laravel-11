@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class Post
 {
@@ -25,5 +26,20 @@ class Post
                 'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi laborum magni fuga alias qui? Ipsam, ratione dolorum. Repellendus, libero iure inventore a iusto voluptatum quidem. Architecto voluptates quasi dolores distinctio.'
             ],
         ];
+    }
+
+    public static function find($slug): array {
+        // menggunakan static krn method all dan find berada pada 1 class yg sama
+        $post = Arr::first(static::all(), function($post) use ($slug) {
+            return $post['slug'] == $slug;
+        });
+
+        // create 404 page instead of throw an laravel's error page
+        if(!$post){
+            abort(404);
+        }
+
+        return $post;
+        
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
+// menggunakan data pada model post
 use App\Models\Post;
 
 // mengirim title page
@@ -18,13 +19,8 @@ Route::get('/posts', function () {
 });
 
 Route::get('/posts/{slug}', function($slug) {
-    
-
-    // Menemukan elemen pertama dalam array posts yang memiliki slug yg sama
-    $post = Arr::first(Post::all(), function($post) use ($slug) {
-        return $post['slug'] == $slug;
-    });
-
+    // Mencari elemen pertama dalam array posts yang memiliki slug yg sama
+    $post = Post::find($slug);
     return view('post', ['title' => 'Detail Post', 'post' => $post]);
 });
 
