@@ -16,7 +16,7 @@ class Post extends Model
         Kemudian, utk mengganti nama table sesuai yg diinginkan,
         gunakan sintaks dibawah ini:
     */ 
-    protected $table = 'blog_posts';
+    // protected $table = 'blog_posts';
 
     // hanya field ini yg boleh diisi
     protected $fillable = ['title', 'author', 'slug', 'body'];

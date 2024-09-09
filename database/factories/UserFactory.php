@@ -27,6 +27,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
+            // kalau passnya ada, maka isi dgn pass yg sdh ada. kl tdk, generate pass baru
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
@@ -39,6 +40,22 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    /* 
+       
+       Membuat method yg akan menghasilkan 
+       user dengan role admin ketika dijalankan
+       pada factories. cara menjalankan:
+       1. php artisan tinker
+       2. App\Models\User::factory()->admin()->create();
+
+    */
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'isAdmin' => true,
         ]);
     }
 }
