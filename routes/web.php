@@ -18,9 +18,14 @@ Route::get('/posts', function () {
     return view('posts', ["title" => "Blog", "posts" => Post::all()] );
 });
 
-Route::get('/posts/{slug}', function($slug) {
-    // Mencari elemen pertama dalam array posts yang memiliki slug yg sama
-    $post = Post::find($slug);
+/*
+    menggunakan route model binding,
+    mengirim seluruh instance dari 
+    model Posts yang sesuai dengan
+    field slug yang akan dicari/diklik.
+
+*/
+Route::get('/posts/{post:slug}', function(Post $post) {
     return view('post', ['title' => 'Detail Post', 'post' => $post]);
 });
 

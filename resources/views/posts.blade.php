@@ -7,7 +7,8 @@
                 <h2 class="mb-2 text-3xl font-semibold tracking-tight text-gray-900">{{$post['title']}}</h2>
             </a>
             <div class="text-base text-gray-500">
-                <a href="#">{{ $post['author'] }}</a> | 1 Januari 2024
+                                                                        {{-- php date format --}}
+                <a href="#">{{ $post['author'] }}</a> | {{ $post['created_at']->format('j F Y') }}
             </div>
             <p class="my-4 font-light">{{ Str::limit($post['body'], 100) }}</p>
             <a href="/posts/{{ $post['slug'] }}" class="font-medium text-blue-500 hover:underline">Read more &raquo;</a>
