@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\User;
 use Illuminate\Support\Arr;
 
 // Eloquent 
@@ -20,4 +22,10 @@ class Post extends Model
 
     // hanya field ini yg boleh diisi
     protected $fillable = ['title', 'author', 'slug', 'body'];
+
+    // Menghubungkan tabel post dgn tabel user
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

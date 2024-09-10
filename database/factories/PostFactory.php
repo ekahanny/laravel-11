@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
@@ -20,7 +21,18 @@ class PostFactory extends Factory
         // membuat data dummy berdasarkan data pada migration post
         return [
             'title' => fake()->sentence(),
-            'author' => fake()->name(),
+            /*
+               Command di bawah ini akan men-generate user baru
+               pada model User utk setiap post baru. Agar bisa
+               men-generate user secara customize, gunakan sintaks:
+               
+               App\Models\Post::factory(100)->recycle(User::factory(5)->create())->create();
+               -> Sintaks diatas akan membuat 100 post dengan hanya 5 user 
+                  (user & post dihubungkan secara acak)
+
+            */
+            'author_id' => User::factory(),
+            
             'slug' => Str::slug(fake()->sentence()),
             'body' => fake()->text()
         ];
