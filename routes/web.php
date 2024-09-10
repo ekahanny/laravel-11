@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 // menggunakan data pada model post
@@ -36,10 +37,18 @@ Route::get('/posts/{post:slug}', function(Post $post) {
      semua post yang dimiliki oleh pengguna (user)
      ke view posts dengan nama variabel posts. 
      Di view, kamu bisa mengaksesnya menggunakan variabel $posts.
+     
+     posts pada $user->posts merupakan method yg dibuat pada 
+     model User
 
 */ 
+
 Route::get('/authors/{user}', function(User $user) {
     return view('posts', ['title' => 'Article by '. $user->name, 'posts' => $user->posts]);
+});
+
+Route::get('/category/{category}', function(Category $category) {
+    return view('posts', ['title' => 'Article in '. $category->name, 'posts' => $category->posts]);
 });
 
 Route::get('/contact', function () {
