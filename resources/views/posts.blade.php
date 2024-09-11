@@ -6,10 +6,13 @@
             <a href="/posts/{{ $post['slug'] }}" class="hover:underline">
                 <h2 class="mb-2 text-3xl font-semibold tracking-tight text-gray-900">{{$post['title']}}</h2>
             </a>
-            <div class="text-base text-gray-500">
-                                                                        {{-- php date format --}}
-                <a href="/authors/{{ $post->author->username }}" class="hover:underline">{{ $post->author->name }}</a> in <a href="/category/{{ $post->category->id }}" class="hover:underline">{{ $post->category->name }}</a>
+            <div>
+                By
+                <a href="/authors/{{ $post->author->username }}" class="hover:underline  text-base text-gray-500">{{ $post->author->name }}</a>
+                 in 
+                <a href="/category/{{ $post->category->slug }}" class="hover:underline text-base text-gray-500">{{ $post->category->name }}</a>
                  |
+                 {{-- php date format --}}
                 {{ $post['created_at']->format('j F Y') }}
             </div>
             <p class="my-4 font-light">{{ Str::limit($post['body'], 100) }}</p>
