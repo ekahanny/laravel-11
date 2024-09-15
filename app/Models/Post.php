@@ -23,6 +23,9 @@ class Post extends Model
     // hanya field ini yg boleh diisi
     protected $fillable = ['title', 'author', 'slug', 'body'];
 
+    // resolve N+1 problem
+    protected $with = ['author', 'category'];
+
     // Menghubungkan tabel post dgn tabel user
     public function author(): BelongsTo
     {
